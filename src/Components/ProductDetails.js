@@ -88,7 +88,7 @@ const [selectedPetType, setSelectedPetType] = useState(null);
           <h1 className="text-3xl font-medium">{product.name}</h1>
 
           <div className="flex items-center gap-2 flex-wrap">
-            <span className="text-xl font-bold">₹{product.price}</span>
+            <span className="text-xl font-bold">{product.price} AED</span>
             {/* <div className="flex text-yellow-500">
               <FaStar /><FaStar /><FaStar /><FaStarHalfAlt /><FaRegStar />
             </div>
