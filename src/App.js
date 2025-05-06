@@ -56,6 +56,8 @@ function App() {
         <Route path="/profile" element={<ProfilePage />} />
 
         <Route path="/register" element={<RegisterPage />} />
+        <Route path="/product/:id" element={<ProductDetails />} />
+      
 
 
 

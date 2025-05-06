@@ -1,26 +1,31 @@
 import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
+import { useParams, Link } from "react-router-dom";
 import axios from "axios";
 import { Heart, Star, Search, Sliders, X } from "lucide-react";
+import { api } from '../utils/api'; 
+import { IMAGE_BASE_URL } from '../utils/api';
 
-const ProductCard = ({ price, discount, name }) => {
+const ProductCard = ({ product }) => {
     const navigate = useNavigate();
     return (
         <div
             className="bg-white rounded-3xl p-6 shadow-sm hover:shadow-md transition-shadow cursor-pointer"
-            onClick={() => navigate("/ProductDetails")}
+            onClick={() => navigate(`/product/${product.id}`)}
+
+
         >
             <div className="relative mb-4 flex justify-center items-center min-h-[200px]">
                 <button className="absolute right-0 top-0 z-10">
                     <Heart className="w-6 h-6 text-gray-400" />
                 </button>
                 <span className="absolute left-0 top-0 bg-orange-500 text-white text-sm px-3 py-1 rounded-full">
-                    {discount}
+                    {product.discount || "30%"}
                 </span>
                 <img
-                    src="/envato-labs-image-edit (8) 1.png"
-                    alt="Product"
-                    className="w-[180px] h-[180px] object-contain"
+                    src={product.images?.[0]?.image_url || '/images/placeholder.png'}
+                    alt={product.name}
+                    className="w-full h-48 object-cover"
                 />
             </div>
 
@@ -33,12 +38,14 @@ const ProductCard = ({ price, discount, name }) => {
                 ))}
             </div>
 
-            <p className="text-gray-700 text-md mb-2 min-h-[40px] line-clamp-2">{name}</p>
-            <p className="text-xl font-bold mb-4">{price} AED</p>
+            <p className="text-gray-700 text-md mb-2 min-h-[40px] line-clamp-2">{product.name}</p>
+            <p className="text-xl font-bold mb-4">{product.price} AED</p>
 
             <button className="w-full bg-orange-400 hover:bg-orange-500 text-white py-3 rounded-full text-sm font-medium transition-colors">
                 Add To Cart
             </button>
+            
+
         </div>
     );
 };
@@ -49,20 +56,19 @@ const StorePage = () => {
     const [loading, setLoading] = useState(true);
 
     useEffect(() => {
-        axios.get("http://127.0.0.1:8000/api/get-all-active-products")
+        // axios
+        //   .get("http://127.0.0.1:8000/api/get-all-active-products") 
+        api.get("/get-all-active-products")
             .then((response) => {
                 console.log("API response:", response.data);
-                setProducts(response.data.products); // ✅ Correctly setting products
-                setLoading(false); // ✅ Mark loading as done!
+                setProducts(response.data.products || []);
+                setLoading(false);
             })
             .catch((error) => {
                 console.error("API fetch error:", error);
-                setLoading(false); // Also stop loading in case of error
+                setLoading(false);
             });
     }, []);
-    
-      
-      
 
     return (
         <div className="px-4 md:px-10 lg:px-20 py-10 bg-[#F5F6ED] min-h-screen">
@@ -127,17 +133,9 @@ const StorePage = () => {
                         <p className="text-center text-lg">Loading products...</p>
                     ) : (
                         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
-                          {products?.map(product => (
-                            <ProductCard
-                                key={product.id}
-                                name={product.name}
-                                price={product.price || 0}
-                                discount="30%" // replace with actual discount if available
-                               
-                            />
-                        ))}
-
-
+                            {products.map((product) => (
+                                <ProductCard key={product.id} product={product} />
+                            ))}
                         </div>
                     )}
                 </main>
