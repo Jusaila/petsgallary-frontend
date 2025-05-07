@@ -7,7 +7,7 @@ export default function Footer() {
       <div className="container mx-auto px-4 flex flex-col items-center space-y-6">
         {/* Logo */}
         <img
-          src="logo png 2.png"
+          src="/logopng2.png"
           alt="Logo"
           className="h-16 w-16 md:h-[120px] md:w-[120px]"
         />

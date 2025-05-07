@@ -28,7 +28,7 @@ const Navbar = () => {
 
           {/* Centered Logo */}
           <Link to="/" className="absolute left-1/2 transform -translate-x-1/2">
-            <img src="logo png 1.png" alt="Logo" className="h-20 w-auto" />
+            <img src="/logopng1.png" alt="Logo" className="h-20 w-auto" />
           </Link>
 
           {/* Right Icons */}
@@ -54,7 +54,7 @@ const Navbar = () => {
         {/* Desktop Layout */}
         <div className="hidden lg:flex w-full items-center justify-between">
           <Link to="/" className="flex items-center">
-            <img src="logo png 1.png" alt="Logo" className="h-30 w-30" />
+            <img src="/logopng1.png" alt="Logo" className="h-30 w-30" />
           </Link>
 
           <nav className="flex items-center gap-8 ml-8">

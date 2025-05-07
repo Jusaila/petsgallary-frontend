@@ -23,7 +23,7 @@ export default function RegisterForm() {
         <div className="w-full md:w-2/5 p-4 md:p-14 flex flex-col justify-center">
           <div className="flex justify-center ">
           <div className="h-30 w-30 rounded-md flex items-center justify-center">
-              <img src="/logo png 1.png" alt="Register Icon" className="h-25 w-25 text-white" />
+              <img src="//logopng1.png" alt="Register Icon" className="h-25 w-25 text-white" />
             </div>
           </div>
 

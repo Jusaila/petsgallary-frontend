@@ -90,7 +90,7 @@ export const ContactPage = () => {
             {/* <footer className="w-full p-4 md:p-8 mt-10"> 
                 <div className="max-w-6xl mx-auto flex flex-col items-center gap-4 md:gap-6">
                     <img
-                        src="logo png 2.png"
+                        src="/logopng2.png"
                         alt="Logo"
                         className="h-16 w-16 md:h-[120px] md:w-[120px]"
                     />

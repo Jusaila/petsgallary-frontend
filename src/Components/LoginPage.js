@@ -21,7 +21,7 @@ const LoginPage = () => {
         <div className="w-full max-w-md">
           {/* Logo */}
           <div className="flex justify-center mb-6">
-            <img src="/logo png 1.png" alt="Company Logo" className="w-16 h-16 object-contain" />
+            <img src="//logopng1.png" alt="Company Logo" className="w-16 h-16 object-contain" />
           </div>
 
           {/* Welcome Text */}
