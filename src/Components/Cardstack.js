@@ -97,11 +97,11 @@ const ScrollAnimatedStackSections = () => {
         {/* Header section at the top */}
         <div className="w-full max-w-6xl text-left mb-6">
           <motion.h1 className="text-3xl sm:text-4xl md:text-5xl font-bold mb-3">
-            Your Family, Our Friend
-          </motion.h1>
+          Book Your Pets Grooming Session Today!            </motion.h1>
           <motion.p className="text-gray-600 max-w-2xl text-sm sm:text-base">
-            Lorem ipsum dolor sit amet consectetur. Id sem amet metus feugiat dolor turpis ut
-            et viverra, et semperque et odio. Ultricis felis arcu.
+          At Pets Gallery, we’re here to help you give your pet the best life possible. we’re just around the corner with wagging tails and open arms.
+
+Visit us today and see why we’re known as the best pet shop in Jadaf, Dubai.
           </motion.p>
         </div>
 

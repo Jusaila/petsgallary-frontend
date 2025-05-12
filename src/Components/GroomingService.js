@@ -42,12 +42,9 @@ export default function GroomingServices() {
       
       <div className="flex-1 pl-0 ml-0 pt-0 mt-0">
         <p className="text-gray-600 mb-4">
-          Lorem ipsum dolor sit amet consectetur. Mauris vitae faucibus ultricies turpis aliquam viverra fermentum purus at. Facilisis malesuada elit egestas duis amet feugiat. Ipsum mattis blandit morbi lacus.
-        </p>
+        At Pets Gallery, we believe pets aren’t just companions they’re cherished members of the family.That’s why we've created a place where every tail wag, playful pounce, and content purr is celebrated.We’ve built more than a pet store; we’ve created a haven where your pet’s comfort, happiness, and health come first. As the best pet shop in Dubai, our mission is to provide everything your furry, feathered, or four-legged friend needs under one roof.        </p>
         <p className="text-gray-600 mb-4">
-          Lorem ipsum dolor sit amet consectetur. Mauris vitae faucibus ultricies turpis aliquam viverra fermentum purus at. Facilisis malesuada elit egestas duis amet feugiat. Ipsum mattis blandit morbi lacus.
-          Lorem ipsum dolor sit amet consectetur. Mauris vitae faucibus ultricies turpis aliquam viverra fermentum purus at. Facilisis malesuada elit egestas duis amet feugiat. Ipsum mattis blandit morbi lacus.
-        </p>
+        From professional grooming services that pamper your pet to a handpicked range of premium pet food and accessories, every product and service we offer is chosen with care and expertise. We believe in raising the standard for pet care, which is why countless pet owners trust us as the best pet shop in Dubai.        </p>
         
         {/* Booking Card */}
         <div className="bg-white rounded-3xl p-6 shadow-sm h-[227px] w-full sm:w-[327px]">

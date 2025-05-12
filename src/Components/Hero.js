@@ -9,19 +9,19 @@ const Hero = () => {
         {
             id: 1,
             imgSrc: "cat.png",
-            title: "Book Grooming Section",
+            title: "Pet Grooming That Feels Like a Spa Day",
             description: "Lorem ipsum dolor sit amet consectetur.",
         },
         {
             id: 2,
             imgSrc: "paw.png",
-            title: "Book Grooming Section",
+            title: "Nourishing Pet Food for Every Breed and Need",
             description: "Lorem ipsum dolor sit amet consectetur.",
         },
         {
             id: 3,
             imgSrc: "cat.png",
-            title: "Book Grooming Section",
+            title: "Stylish & Practical Accessories",
             description: "Lorem ipsum dolor sit amet consectetur.",
         },
     ];
@@ -42,18 +42,16 @@ const Hero = () => {
             <div className="mx-auto grid grid-cols-1 lg:grid-cols-12 gap-10 items-stretch">
                 {/* Left Section */}
                 <div className="lg:col-span-5 flex flex-col space-y-6 h-full">
-                    <div className="bg-white rounded-2xl p-6 shadow-lg flex-grow flex flex-col justify-between">
-                        <h1 className="md:text-7xl font-bold leading-tight">
-                            Best Help <br />
-                            For
-                            <img src="/Group 9.png" alt="Cat" className="inline-block mx-4 w-18 h-16" />
-                            Your <br />
-                            Lovely Pets
-                        </h1>
-                        <p className="text-gray-600 text-base mt-7">
-                            Lorem ipsum dolor sit amet consectetur. Id sem amet mattis feugiat dolor turpis ut eu viverra.
-                        </p>
-                    </div>
+                <div className="bg-white rounded-2xl p-6 shadow-lg flex-grow flex flex-col justify-between">
+                <h1 className="md:text-7xl font-bold leading-tight">
+                    The Best Pet Shop <span className="inline-block align-middle">
+                    <img src="/Group 9.png" alt="Cat" className="inline-block mx-4 w-18 h-16" />
+                    </span> in Dubai
+                </h1>
+                <p className="text-gray-600 text-base mt-7">
+                Where Happy Pets Come First                </p>
+                </div>
+
                     {/* Action Cards */}
                     <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 h-full">
                         {/* Go To Our Store */}

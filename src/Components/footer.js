@@ -14,7 +14,7 @@ export default function Footer() {
 
         {/* Description */}
         <p className="text-sm text-gray-600">
-          Lorem ipsum dolor sit amet consectetur, sit amet
+        The Best Pet Shop in Dubai  Where Happy Pets Come First
         </p>
 
         {/* Social Links */}
