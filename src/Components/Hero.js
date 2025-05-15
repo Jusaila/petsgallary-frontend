@@ -8,21 +8,21 @@ const Hero = () => {
     const floatingCards = [
         {
             id: 1,
-            imgSrc: "cat.png",
+            imgSrc: "/pet-grooming.png",
             title: "Pet Grooming That Feels Like a Spa Day",
-            description: "Lorem ipsum dolor sit amet consectetur.",
+            // description: "Lorem ipsum dolor sit amet consectetur.",
         },
         {
             id: 2,
-            imgSrc: "paw.png",
+            imgSrc: "/pet-food.png",
             title: "Nourishing Pet Food for Every Breed and Need",
-            description: "Lorem ipsum dolor sit amet consectetur.",
+            // description: "Lorem ipsum dolor sit amet consectetur.",
         },
         {
             id: 3,
-            imgSrc: "cat.png",
+            imgSrc: "/accessories.png",
             title: "Stylish & Practical Accessories",
-            description: "Lorem ipsum dolor sit amet consectetur.",
+            // description: "Lorem ipsum dolor sit amet consectetur.",
         },
     ];
 
