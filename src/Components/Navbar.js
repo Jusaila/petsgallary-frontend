@@ -6,7 +6,7 @@ import { useSelector } from 'react-redux';
 const Navbar = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const cartItems = useSelector(store => store.cart.items);
-
+  
   return (
     <header className="bg-white shadow-md w-full">
       {/* Main Navbar */}
