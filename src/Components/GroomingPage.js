@@ -181,8 +181,122 @@ const GroomingPage = () => {
           </div>
         </div>
       </section>
-      {/* why choose Section */}
-    <section className="bg-[#f5f5eb] py-12 px-4 sm:px-8 md:px-12 lg:px-24">
+     
+
+ {/* why Section */}
+    <section className="container mx-auto px-4 md:px-8 max-w-6xl mt-5">
+        <div className="flex flex-col lg:flex-row items-center gap-8 lg:gap-16">
+          {/* Image Section */}
+          <div className="w-full lg:w-1/2">
+            <div className="relative">
+              <div className="bg-orange-100 absolute -top-4 -left-4 w-full h-full rounded-lg"></div>
+              <img 
+                src="/petsGallary.png" 
+                alt="Happy pets at Pets Gallery Dubai" 
+                className="w-full h-auto object-cover rounded-lg shadow-lg relative z-10"
+              />
+              <div className="bg-orange-500 text-white px-6 py-3 absolute -bottom-5 right-10 z-20 rounded-lg shadow-md">
+                <p className="font-semibold text-lg">5+ Years of Excellence</p>
+              </div>
+            </div>
+          </div>
+          
+          {/* Content Section */}
+          <div className="w-full lg:w-1/2 mt-12 lg:mt-0">
+            <h2 className="text-3xl md:text-4xl font-bold mb-6">
+              Why Pet Owners in Dubai
+              <span className="text-orange-500"> Choose Pets Gallery</span>
+            </h2>
+            
+            <p className="text-gray-700 mb-8 leading-relaxed">
+              At Pets Gallery, we've earned the trust of countless pet owners across Dubai through our dedication to exceptional care, professional expertise, and genuine love for animals. Here's why pet owners continue to choose us for their grooming needs:
+            </p>
+            
+            <div className="space-y-6">
+              <div className="flex items-start">
+                <div className="bg-orange-100 p-3 rounded-full mr-4">
+                  <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6 text-orange-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+                  </svg>
+                </div>
+                <div>
+                  <h3 className="text-xl font-semibold text-gray-800 mb-1">Certified Professional Groomers</h3>
+                  <p className="text-gray-600">
+                    Our team consists of internationally certified pet stylists with specialized training in handling various breeds and temperaments.
+                  </p>
+                </div>
+              </div>
+              
+              <div className="flex items-start">
+                <div className="bg-orange-100 p-3 rounded-full mr-4">
+                  <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6 text-orange-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 10V3L4 14h7v7l9-11h-7z" />
+                  </svg>
+                </div>
+                <div>
+                  <h3 className="text-xl font-semibold text-gray-800 mb-1">Premium Products & Equipment</h3>
+                  <p className="text-gray-600">
+                    We use only the highest quality, pet-safe products and state-of-the-art equipment specifically chosen for Dubai's unique climate conditions.
+                  </p>
+                </div>
+              </div>
+              
+              <div className="flex items-start">
+                <div className="bg-orange-100 p-3 rounded-full mr-4">
+                  <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6 text-orange-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8v4m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                  </svg>
+                </div>
+                <div>
+                  <h3 className="text-xl font-semibold text-gray-800 mb-1">Health-Focused Approach</h3>
+                  <p className="text-gray-600">
+                    Our grooming sessions include health checks to detect early signs of skin issues, parasites, or other concerns that may require veterinary attention.
+                  </p>
+                </div>
+              </div>
+              
+              <div className="flex items-start">
+                <div className="bg-orange-100 p-3 rounded-full mr-4">
+                  <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6 text-orange-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M14.828 14.828a4 4 0 01-5.656 0M9 10h.01M15 10h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                  </svg>
+                </div>
+                <div>
+                  <h3 className="text-xl font-semibold text-gray-800 mb-1">Stress-Free Environment</h3>
+                  <p className="text-gray-600">
+                    Our salon is designed to create a calm, comfortable experience with minimal wait times and a soothing atmosphere for nervous pets.
+                  </p>
+                </div>
+              </div>
+            </div>
+            
+           
+          </div>
+        </div>
+        
+        {/* Trust Elements */}
+        <div className="mt-16 grid grid-cols-2 md:grid-cols-4 gap-6 text-center">
+          <div className="p-4">
+            <div className="text-orange-500 font-bold text-4xl mb-1">5000+</div>
+            <p className="text-gray-600">Happy Pets Groomed</p>
+          </div>
+          <div className="p-4">
+            <div className="text-orange-500 font-bold text-4xl mb-1">98%</div>
+            <p className="text-gray-600">Customer Satisfaction</p>
+          </div>
+          <div className="p-4">
+            <div className="text-orange-500 font-bold text-4xl mb-1">12+</div>
+            <p className="text-gray-600">Award-Winning Groomers</p>
+          </div>
+          <div className="p-4">
+            <div className="text-orange-500 font-bold text-4xl mb-1">30+</div>
+            <p className="text-gray-600">Specialized Services</p>
+          </div>
+        </div>
+      </section>
+
+  {/* why choose Section */}
+  <section className="bg-[#f5f5eb] py-12 px-4 sm:px-8 md:px-12 lg:px-24">
         <h2 className="text-2xl sm:text-4xl md:text-4xl font-bold text-gray-900 text-left mb-8">
         Why We're the Most Trusted Pet Shop in Jaddaf, Dubai
         </h2>
@@ -203,34 +317,10 @@ const GroomingPage = () => {
         </div>
       </section>
 
-
-      {/*card section */}
-      <section className="bg-[#f5f5eb] py-12 px-4 sm:px-8 md:px-12 lg:px-24">
-        <div className="max-w-[1700px] mx-auto">
-          <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-gray-900 mb-8">
-            Happy Pets, Stunning Makeovers!
-          </h2>
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-            {items.map((item) => (
-              <div key={item.id} className="flex flex-col">
-                <div className={`${item.bgColor} rounded-2xl overflow-hidden ${item.height}`}>
-                  <img
-                    src={item.img}
-                    alt="Pet"
-                    className="w-full h-full object-cover"
-                  />
-                </div>
-                <p className="mt-4 text-lg font-semibold">{item.text}</p>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
       {/* Tab section */}
       <section className="container mx-auto px-4 md:px-8 max-w-6xl">
         <div className="text-center mb-10">
-          <h2 className="text-4xl font-bold mb-3">Pet Grooming Knowledge Center</h2>
+          <h2 className="text-5xl font-bold mb-3">Pet Grooming Knowledge Center</h2>
           <p className="text-gray-600 text-lg max-w-3xl mx-auto">
             Discover everything you need to know about professional pet grooming services and how they benefit your furry family members
           </p>
@@ -507,6 +597,29 @@ const GroomingPage = () => {
           <button className="bg-orange-500 hover:bg-orange-600 text-white px-8 py-3 mb-5 rounded-full font-medium transition-colors duration-200">
             Book Appointment Now
           </button>
+        </div>
+      </section>
+
+        {/*card section */}
+        <section className="bg-[#f5f5eb] py-12 px-4 sm:px-8 md:px-12 lg:px-24">
+        <div className="max-w-[1700px] mx-auto">
+          <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-gray-900 mb-8">
+            Happy Pets, Stunning Makeovers!
+          </h2>
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+            {items.map((item) => (
+              <div key={item.id} className="flex flex-col">
+                <div className={`${item.bgColor} rounded-2xl overflow-hidden ${item.height}`}>
+                  <img
+                    src={item.img}
+                    alt="Pet"
+                    className="w-full h-full object-cover"
+                  />
+                </div>
+                {/* <p className="mt-4 text-lg font-semibold">{item.text}</p> */}
+              </div>
+            ))}
+          </div>
         </div>
       </section>
 
