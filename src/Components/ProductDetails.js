@@ -56,9 +56,8 @@ const ProductDetails = () => {
 
   useEffect(() => {
    
-    api.get(`/get-product-details/${id}`)
-      // axios
-      // .get("http://127.0.0.1:8000/api/get-product-details/1") 
+    //api.get(`/get-product-details/${id}`)   
+    axios.get(`http://127.0.0.1:8000/api/get-product-details/${id}`)
       .then((res) => {
         console.log("Product details:", res.data.product);
         setProduct(res.data.product);
@@ -212,7 +211,7 @@ const ProductDetails = () => {
 
             {/* Key Features / Benefits */}
             <div className="bg-white p-6 rounded-xl shadow-md border">
-              <h3 className="text-xl font-semibold text-[#1F2937] mb-3">Benefits</h3>
+              <h3 className="text-xl font-semibold text-[#1F2937] mb-3">Key Features / Benefits</h3>
               <p className="text-gray-700 leading-relaxed whitespace-pre-line">
           {product.benefits.replace(/^Key Features\/Benefits:\s*/i, '')}
         </p>
