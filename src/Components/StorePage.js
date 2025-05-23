@@ -3,6 +3,8 @@ import { useNavigate } from "react-router-dom";
 import { Search, Sliders, Heart, Star } from "lucide-react";
 import FilterSidebar from "./FilterSidebar";
 import axios from "axios";
+import { api } from '../utils/api'; 
+
 
 const ProductCard = ({ product }) => {
   const navigate = useNavigate();
@@ -67,7 +69,9 @@ const StorePage = () => {
         setLoading(true);
 
         // Fetch price range
-        const priceRes = await axios.get("http://127.0.0.1:8000/api/get-products-price-range");
+        const priceRes = await 
+        api.get('/get-all-active-products');        
+        //axios.get("http://127.0.0.1:8000/api/get-products-price-range");
         const min = priceRes.data.min_price ?? 0;
         const max = priceRes.data.max_price ?? 5000;
         setMinPrice(min);
@@ -75,7 +79,9 @@ const StorePage = () => {
         setSelectedRange({ min, max });
 
         // Fetch all active products initially
-        const productsRes = await axios.get("http://127.0.0.1:8000/api/get-all-active-products");
+        
+        const productsRes = await api.get(`/get-product-details/${id}`)
+        //axios.get("http://127.0.0.1:8000/api/get-all-active-products");
         const allProducts = productsRes.data.products || [];
         setProducts(allProducts);
         setFilteredProducts(allProducts);
@@ -110,7 +116,9 @@ const StorePage = () => {
       }
       console.log("🔍 Sending filters to backend:", params); // DEBUG: See what is being sent
 
-      const response = await axios.get("http://127.0.0.1:8000/api/get-filtered-products", { params });
+      const response = await 
+      api.get('/get-filtered-products', { params });      
+      //axios.get("http://127.0.0.1:8000/api/get-filtered-products", { params });
       const filtered = response.data.products || [];
       setFilteredProducts(filtered);
     } catch (error) {
