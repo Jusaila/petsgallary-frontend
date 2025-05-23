@@ -3,7 +3,7 @@ import { useParams, Link } from "react-router-dom";
 import { FaHeart } from "react-icons/fa";
 import { useDispatch } from "react-redux";
 import { addItem } from "../utils/cartSlice";
-import axios from "axios";
+// import axios from "axios";
 import { api } from '../utils/api'; 
 
 
@@ -56,8 +56,8 @@ const ProductDetails = () => {
 
   useEffect(() => {
    
-    //api.get(`/get-product-details/${id}`)   
-    axios.get(`http://127.0.0.1:8000/api/get-product-details/${id}`)
+    api.get(`/get-product-details/${id}`)   
+    // axios.get(`http://127.0.0.1:8000/api/get-product-details/${id}`)
       .then((res) => {
         console.log("Product details:", res.data.product);
         setProduct(res.data.product);

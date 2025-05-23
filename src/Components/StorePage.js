@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { Search, Sliders, Heart, Star } from "lucide-react";
 import FilterSidebar from "./FilterSidebar";
-import axios from "axios";
+// import axios from "axios";
 import { api } from '../utils/api'; 
 
 
