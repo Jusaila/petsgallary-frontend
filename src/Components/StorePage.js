@@ -80,7 +80,7 @@ const StorePage = () => {
 
         // Fetch all active products initially
         
-        const productsRes = await api.get(`/get-product-details/${id}`)
+        const productsRes = await api.get(`/get-all-active-products`)
         //axios.get("http://127.0.0.1:8000/api/get-all-active-products");
         const allProducts = productsRes.data.products || [];
         setProducts(allProducts);
