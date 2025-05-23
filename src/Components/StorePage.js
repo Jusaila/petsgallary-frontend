@@ -5,9 +5,9 @@ import FilterSidebar from "./FilterSidebar";
 // import axios from "axios";
 import { api } from '../utils/api'; 
 
-
 const ProductCard = ({ product }) => {
   const navigate = useNavigate();
+
   return (
     <div
       className="bg-white rounded-3xl p-6 shadow-sm hover:shadow-md transition-shadow cursor-pointer"
@@ -50,7 +50,6 @@ const ProductCard = ({ product }) => {
 
 const StorePage = () => {
   const [isFilterOpen, setIsFilterOpen] = useState(false);
-  const [products, setProducts] = useState([]);
   const [filteredProducts, setFilteredProducts] = useState([]);
   const [loading, setLoading] = useState(true);
 
@@ -62,51 +61,61 @@ const StorePage = () => {
   const [minPrice, setMinPrice] = useState(0);
   const [maxPrice, setMaxPrice] = useState(5000);
 
-  // Initial load: get price range and all active products
-  useEffect(() => {
-    const fetchInitialData = async () => {
+  const [products, setProducts] = useState([]);
+  const [currentPage, setCurrentPage] = useState(1);
+  const [totalPages, setTotalPages] = useState(1);
+ 
+
+
+  // Initial load
+    const fetchInitialData = async (page = 1) => {
       try {
         setLoading(true);
 
         // Fetch price range
-        const priceRes = await 
-        api.get('/get-all-active-products');        
-        //axios.get("http://127.0.0.1:8000/api/get-products-price-range");
+        const priceRes = await api.get('/get-all-active-products');
+        // const priceRes = await axios.get("http://127.0.0.1:8000/api/get-products-price-range");
         const min = priceRes.data.min_price ?? 0;
         const max = priceRes.data.max_price ?? 5000;
         setMinPrice(min);
         setMaxPrice(max);
         setSelectedRange({ min, max });
 
-        // Fetch all active products initially
-        
-        const productsRes = await api.get(`/get-all-active-products`)
-        //axios.get("http://127.0.0.1:8000/api/get-all-active-products");
-        const allProducts = productsRes.data.products || [];
-        setProducts(allProducts);
-        setFilteredProducts(allProducts);
+        // Fetch all active products
+        const productsRes = await api.get('/get-all-active-products', {
+          params: { page }
+        });
+        // const productsRes = await api.get('/get-all-active-products');
+        // const productsRes = await axios.get("http://127.0.0.1:8000/api/get-all-active-products");
+        const paginated = productsRes.data.products || { data: [], current_page: 1, last_page: 1 };
 
-        setLoading(false);
+        setProducts(paginated.data || []);
+        setFilteredProducts(paginated.data || []);
+        setCurrentPage(paginated.current_page || 1);
+        const totalItems = paginated.total || 0;
+        const perPage = paginated.per_page || 12;
+        const computedTotalPages = Math.ceil(totalItems / perPage);
+        setTotalPages(computedTotalPages);
       } catch (error) {
         console.error("Initial load error:", error);
+      } finally {
         setLoading(false);
       }
     };
-
+    useEffect(() => {
     fetchInitialData();
   }, []);
 
-  // Function to fetch filtered products from backend
   const fetchFilteredProducts = async (
     search = "",
     productTypes = [],
     petTypes = [],
-    priceRange = null
+    priceRange = null,
+    page = 1
   ) => {
     setLoading(true);
     try {
       const params = {};
-
       if (search.trim() !== "") params.search = search;
       if (productTypes.length) params.productTypes = productTypes;
       if (petTypes.length) params.petTypes = petTypes;
@@ -114,46 +123,68 @@ const StorePage = () => {
         params.minPrice = priceRange.min;
         params.maxPrice = priceRange.max;
       }
-      console.log("🔍 Sending filters to backend:", params); // DEBUG: See what is being sent
+      params.page = page;
 
-      const response = await 
-      api.get('/get-filtered-products', { params });      
-      //axios.get("http://127.0.0.1:8000/api/get-filtered-products", { params });
-      const filtered = response.data.products || [];
-      setFilteredProducts(filtered);
+      console.log("🔍 Sending filters to backend:", params);
+
+      const response = await api.get('/get-filtered-products', { params });
+      // const response = await axios.get("http://127.0.0.1:8000/api/get-filtered-products", { params });
+
+      const paginated = response.data.products || { data: [], current_page: 1, last_page: 1 };
+      setFilteredProducts(paginated.data || []);
+      setCurrentPage(paginated.current_page || 1);
+      const totalItems = paginated.total || 0;
+    const perPage = paginated.per_page || 12;
+    const computedTotalPages = Math.ceil(totalItems / perPage);
+    setTotalPages(computedTotalPages);
     } catch (error) {
       console.error("Filter fetch error:", error);
+    } finally {
+      setLoading(false);
     }
-    setLoading(false);
   };
+  
 
-  // When filters are applied from sidebar
   const onApplyFilters = (filters) => {
     setSelectedRange(filters.priceRange);
     setSelectedProductType(filters.productTypes);
     setSelectedPetTypes(filters.petTypes);
+    setCurrentPage(1);
 
-    fetchFilteredProducts(searchQuery, filters.productTypes, filters.petTypes, filters.priceRange);
-
+    fetchFilteredProducts(searchQuery, filters.productTypes, filters.petTypes, filters.priceRange, 1);
     setIsFilterOpen(false);
   };
 
- 
-  // useEffect(() => {
-  //   fetchFilteredProducts(searchQuery, selectedProductType, selectedPetTypes, selectedRange);
-  // }, [searchQuery]);
+  const handlePageChange = (newPage) => {
+    if (newPage < 1 || newPage > totalPages) return;
+  
+    setCurrentPage(newPage);
+  
+    const isFiltering =
+      searchQuery.trim() !== "" ||
+      selectedProductType.length > 0 ||
+      selectedPetTypes.length > 0;
+  
+    if (isFiltering) {
+      fetchFilteredProducts(searchQuery, selectedProductType, selectedPetTypes, selectedRange, newPage);
+    } else {
+      fetchInitialData(newPage); // Fetch paginated unfiltered products
+    }
+  };
+  
+
 
   return (
     <div className="px-4 md:px-10 lg:px-20 py-10 bg-[#F5F6ED] min-h-screen">
       <div className="flex flex-wrap justify-between items-center gap-4 mb-8">
         <h1 className="text-3xl md:text-4xl font-bold">Store</h1>
         <div className="relative flex-1 max-w-md">
-        <form
+          <form
             onSubmit={(e) => {
               e.preventDefault();
               fetchFilteredProducts(searchQuery, selectedProductType, selectedPetTypes, selectedRange);
             }}
-            className="relative flex-1 max-w-md"
+            className="relative"
           >
             <input
               type="text"
@@ -169,11 +200,8 @@ const StorePage = () => {
               <Search className="w-4 h-4 text-white" />
             </div>
           </form>
-
-          <div className="absolute left-3 top-1/2 -translate-y-1/2 bg-orange-400 rounded-full p-2">
-            <Search className="w-4 h-4 text-white" />
-          </div>
         </div>
+
         <button
           className="lg:hidden flex items-center gap-2 bg-orange-400 text-white px-4 py-2 rounded-full"
           onClick={() => setIsFilterOpen(true)}
@@ -197,19 +225,52 @@ const StorePage = () => {
           onApplyFilters={onApplyFilters}
         />
 
-        <main className="flex-1">
-          {loading ? (
-            <p className="text-center text-lg">Loading products...</p>
-          ) : filteredProducts.length === 0 ? (
-            <p className="text-center text-lg">No products found.</p>
-          ) : (
+      <main className="flex-1">
+        {loading ? (
+          <p className="text-center text-lg">Loading products...</p>
+        ) : filteredProducts.length === 0 ? (
+          <p className="text-center text-lg">No products found.</p>
+        ) : (
+          <>
+            {/* Your product grid/list here */}
             <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
-              {filteredProducts.map((product) => (
+              {filteredProducts.map(product => (
                 <ProductCard key={product.id} product={product} />
               ))}
             </div>
-          )}
-        </main>
+
+            {/* Pagination UI */}
+            {totalPages > 1 && (
+              <div className="flex justify-center items-center gap-4 mt-6">
+                <button
+                  onClick={() => handlePageChange(currentPage - 1)}
+                  disabled={currentPage === 1}
+                  className={`px-4 py-2 rounded ${
+                    currentPage === 1 ? 'bg-gray-300 text-gray-500 cursor-not-allowed' : 'bg-blue-600 text-white hover:bg-blue-700'
+                  }`}
+                >
+                  Previous
+                </button>
+
+                <span className="text-sm text-gray-700">
+                  Page {currentPage} of {totalPages}
+                </span>
+
+                <button
+                  onClick={() => handlePageChange(currentPage + 1)}
+                  disabled={currentPage === totalPages}
+                  className={`px-4 py-2 rounded ${
+                    currentPage === totalPages ? 'bg-gray-300 text-gray-500 cursor-not-allowed' : 'bg-blue-600 text-white hover:bg-blue-700'
+                  }`}
+                >
+                  Next
+                </button>
+              </div>
+            )}
+          </>
+        )}
+      </main>
+
       </div>
     </div>
   );
