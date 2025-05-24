@@ -4,6 +4,7 @@ import { Search, Sliders, Heart, Star } from "lucide-react";
 import FilterSidebar from "./FilterSidebar";
 // import axios from "axios";
 import { api } from '../utils/api'; 
+import qs from "qs";
 
 const ProductCard = ({ product }) => {
   const navigate = useNavigate();
@@ -85,7 +86,7 @@ const StorePage = () => {
         const productsRes = await api.get('/get-all-active-products', {
           params: { page }
         });
-        // const productsRes = await api.get('/get-all-active-products');
+        
         // const productsRes = await axios.get("http://127.0.0.1:8000/api/get-all-active-products");
         const paginated = productsRes.data.products || { data: [], current_page: 1, last_page: 1 };
 
@@ -117,8 +118,8 @@ const StorePage = () => {
     try {
       const params = {};
       if (search.trim() !== "") params.search = search;
-      if (productTypes.length) params.productTypes = productTypes;
-      if (petTypes.length) params.petTypes = petTypes;
+      if (productTypes.length) params.productTypes = productTypes.join(",");
+      if (petTypes.length) params.petTypes = petTypes.join(",");      
       if (priceRange) {
         params.minPrice = priceRange.min;
         params.maxPrice = priceRange.max;
@@ -127,8 +128,18 @@ const StorePage = () => {
 
       console.log("🔍 Sending filters to backend:", params);
 
-      const response = await api.get('/get-filtered-products', { params });
-      // const response = await axios.get("http://127.0.0.1:8000/api/get-filtered-products", { params });
+      const response = await api.get('/get-filtered-products', {
+        params,
+        paramsSerializer: params => qs.stringify(params, { arrayFormat: "brackets" }),
+      }
+    );
+      // const response = await axios.get(
+      //   "http://127.0.0.1:8000/api/get-filtered-products",
+        // {
+        //   params,
+        //   paramsSerializer: params => qs.stringify(params, { arrayFormat: "brackets" }),
+        // }
+      // );
 
       const paginated = response.data.products || { data: [], current_page: 1, last_page: 1 };
       setFilteredProducts(paginated.data || []);
